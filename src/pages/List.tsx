@@ -1,24 +1,12 @@
 import { useEffect, useState } from "react";
+
 import Grid from "@mui/material/Grid";
-import Drawer from "@mui/material/Drawer";
+import AppBar from "@mui/material/AppBar";
+import Container from "@mui/material/Container";
 
 import ProductCard from "../components/ProductCard/ProductCard";
 import CartIcon from "../components/CartIcon/CartIcon";
 import HomeIcon from "../components/HomeIcon/HomeIcon";
-import Cart from "../components/Cart/Cart";
-
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 
 import { fetchItems as apiFetchItems } from "../api/items";
 
@@ -29,11 +17,12 @@ export type ProductItemType = {
   available: boolean;
   brand: string;
   weight?: number;
-  options?: {
-    color?: string[];
-    quantity?: number;
+  options: {
+    color: string[] | string;
+    quantity: number;
     storage?: string[];
-    power: number[];
+    power?: number[];
+    weight?: number[];
   }[];
 };
 
@@ -83,7 +72,7 @@ const List = () => {
       <AppBar position="static">
         <Container maxWidth={"xs"}>
           <Grid container justifyContent="space-around" alignItems="center">
-            <HomeIcon count={getTotalItems()} setCartOpen={setCartOpen} />
+            <HomeIcon />
             <CartIcon count={getTotalItems()} setCartOpen={setCartOpen} />
           </Grid>
         </Container>
