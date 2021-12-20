@@ -5,7 +5,7 @@ import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Routes>
         <Route path="checkout" element={<Checkout />} />
         <Route path="/product/:productId" element={<ProductDetails />} />
