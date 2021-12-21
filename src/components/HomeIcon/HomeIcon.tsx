@@ -1,12 +1,16 @@
-import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
+import { useNavigate } from "react-router-dom";
 
-const CartIcon = () => {
+const HomeIconButton = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <IconButton aria-label="cart">
+      <IconButton
+        aria-label="cart"
+        onClick={() => navigate("/", { replace: true })}
+      >
         <Typography variant="h6" color="white">
           Home &nbsp;
         </Typography>
@@ -17,4 +21,4 @@ const CartIcon = () => {
   );
 };
 
-export default CartIcon;
+export default HomeIconButton;

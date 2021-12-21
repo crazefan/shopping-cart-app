@@ -1,17 +1,20 @@
-import Badge from "@mui/material/Badge";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+import { Badge, IconButton, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   count: number;
-  setCartOpen: (value: boolean) => void;
 };
 
-const CartIcon = ({ count, setCartOpen }: Props) => {
+const CartIcon = ({ count }: Props) => {
+  const navigate = useNavigate();
   return (
     <>
-      <IconButton aria-label="cart" onClick={() => setCartOpen(true)}>
+      <IconButton
+        aria-label="cart"
+        onClick={() => navigate("checkout", { replace: true })}
+      >
         <Typography variant="h6" color="white">
           Checkout &nbsp;
         </Typography>
