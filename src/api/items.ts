@@ -1,4 +1,4 @@
-import { ProductItemType } from "../pages/List";
+import { ProductItemType } from "../App";
 
 export const fetchItems = async (): Promise<ProductItemType[]> => {
   const fetchedObject = await (
