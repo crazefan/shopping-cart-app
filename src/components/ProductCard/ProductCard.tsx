@@ -30,7 +30,7 @@ const ProductCard = ({ item, addToCart }: Props) => {
           component="img"
           height="180"
           image={`/static/assets/${item.id}.jpg`}
-          alt="green iguana"
+          alt={`product-item-${item.id}`}
         />
         <CardContent>
           <Typography gutterBottom variant="body1" component="div">

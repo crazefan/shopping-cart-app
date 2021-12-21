@@ -12,7 +12,6 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material/";
-
 import StockChip from "../StockChip/StockChip";
 import { ProductItemType, CartItemType } from "../../App";
 
@@ -55,35 +54,12 @@ const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
   const getColorValue = (option: any) =>
     Array.isArray(option.color) ? option.color[0] : option.color;
 
-  const getOptions = (optionVariant: "power" | "storage") => {
-    const availableOptions = item.options.find(
+  const getOptionsFromColor = () => {
+    return item.options.find(
       (option) =>
         option.color === options.color.value ||
         option.color[0] === options.color.value
     );
-
-    switch (optionVariant) {
-      case "power":
-        return availableOptions &&
-          availableOptions.power &&
-          availableOptions.power.length > 0
-          ? availableOptions.power.map((powerOption, i) => (
-              <MenuItem key={i} value={powerOption}>
-                {powerOption}
-              </MenuItem>
-            ))
-          : null;
-      case "storage":
-        return availableOptions &&
-          availableOptions.storage &&
-          availableOptions.storage.length > 0
-          ? availableOptions.storage.map((storageOption, i) => (
-              <MenuItem key={i} value={storageOption}>
-                {storageOption}
-              </MenuItem>
-            ))
-          : null;
-    }
   };
 
   useEffect(() => {
@@ -145,7 +121,11 @@ const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
                     label="Power"
                     value={options.power.value}
                   >
-                    {getOptions("power")}
+                    {getOptionsFromColor()?.power?.map((powerOption, i) => (
+                      <MenuItem key={i} value={powerOption}>
+                        {powerOption}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               )}
@@ -165,7 +145,13 @@ const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
                     label="Storage"
                     value={options.storage.value}
                   >
-                    {getOptions("storage")}
+                    {getOptionsFromColor()?.storage?.map(
+                      (storageOptions, i) => (
+                        <MenuItem key={i} value={storageOptions}>
+                          {storageOptions}
+                        </MenuItem>
+                      )
+                    )}
                   </Select>
                 </FormControl>
               )}
