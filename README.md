@@ -3,6 +3,8 @@
 This is a small shopping cart app with home page (products list) and shopping cart page.
 You can add and remove items to and from the cart.
 
+Deployed version [https://shopping-cart-app-td.netlify.app/](https://shopping-cart-app-td.netlify.app/)
+
 _Since product json schema states only one quantity value for different product options, it was impossible to handle stock availability when adding to the cart. Instead I decided that the added products with different options are considered different items._
 
 #### 🛠️ Built with:
