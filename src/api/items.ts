@@ -1,14 +1,13 @@
 import { ProductItemType } from "../App";
 
 export const fetchItems = async (): Promise<ProductItemType[]> => {
-  const fetchedObject = await (
-    await fetch("products.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-  ).json();
+  const fetchedObject = await fetch("products.json", {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+  const objectToJson = await fetchedObject.json();
 
-  return fetchedObject.items;
+  return objectToJson.items;
 };
