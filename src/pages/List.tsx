@@ -16,8 +16,6 @@ const List = ({ items, addToCart }: Props) => {
         <Grid
           container
           item
-          xs={12}
-          sm={12}
           md={10}
           lg={8}
           spacing={4}
@@ -26,7 +24,7 @@ const List = ({ items, addToCart }: Props) => {
           alignItems="center"
         >
           {items.map((item) => (
-            <Grid key={item.id} item xs={12} md={5} lg={3}>
+            <Grid key={item.id} item md={5} lg={3}>
               <ProductCard key={item.id} item={item} addToCart={addToCart} />
             </Grid>
           ))}

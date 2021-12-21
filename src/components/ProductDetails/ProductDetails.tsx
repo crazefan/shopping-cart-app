@@ -32,13 +32,6 @@ type OptionsType = {
 const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
   const [options, setOptions] = useState<OptionsType>({ color: { value: "" } });
 
-  const getAvailableOptions = () => {
-    if (item.options[0].storage)
-      setOptions((prev) => ({ ...prev, storage: { value: "" } }));
-    if (item.options[0].power)
-      setOptions((prev) => ({ ...prev, power: { value: "" } }));
-  };
-
   const handleColorChange = (e: any) => {
     setOptions((prev) => ({ ...prev, color: { value: e.target.value } }));
   };
@@ -52,22 +45,15 @@ const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
     addToCart(newItem);
   };
 
+  const getAvailableOptions = () => {
+    if (item.options[0].storage)
+      setOptions((prev) => ({ ...prev, storage: { value: "" } }));
+    if (item.options[0].power)
+      setOptions((prev) => ({ ...prev, power: { value: "" } }));
+  };
+
   const getColorValue = (option: any) =>
     Array.isArray(option.color) ? option.color[0] : option.color;
-
-  // const getPowerOptions = () => {
-  //   const powerOptions = item.options.find(
-  //     (option) => option.color === color || option.color[0] === color
-  //   );
-
-  //   return powerOptions && powerOptions.power && powerOptions.power.length > 0
-  //     ? powerOptions.power.map((powerOption, i) => (
-  //         <MenuItem key={i} value={powerOption}>
-  //           {powerOption}
-  //         </MenuItem>
-  //       ))
-  //     : null;
-  // };
 
   const getOptions = (optionVariant: "power" | "storage") => {
     const availableOptions = item.options.find(
@@ -106,23 +92,18 @@ const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
 
   return (
     <>
-      <Dialog
-        disableEscapeKeyDown
-        open={open}
-        onClose={handleClose}
-        maxWidth={"xs"}
-        fullWidth
-      >
-        <Grid container justifyContent="center">
+      <Dialog open={open} onClose={handleClose}>
+        <Grid container justifyContent="center" sx={{ width: 350 }}>
           <Grid item>
             <DialogTitle>{item.name}</DialogTitle>
             <DialogContent>
-              <img
-                src={`/static/assets/${item.id}.jpg`}
-                height="150px"
-                width="auto"
-              />
-              <Typography variant="body1">Details: </Typography>
+              <Grid container justifyContent="center">
+                <img
+                  src={`/static/assets/${item.id}.jpg`}
+                  height="150px"
+                  width="auto"
+                />
+              </Grid>
               <Typography variant="body2">
                 <b>Brand:</b> {item.brand} <br></br>
                 <b>Weight:</b> {item.weight} kg <br></br>
@@ -131,7 +112,7 @@ const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
 
               <Typography variant="body1">Choose variant:</Typography>
 
-              <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <FormControl sx={{ my: 1, minWidth: 120 }}>
                 <InputLabel>Color</InputLabel>
                 <Select
                   autoFocus
@@ -170,7 +151,7 @@ const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
               )}
               {options.storage && (
                 <FormControl
-                  sx={{ m: 1, minWidth: 120 }}
+                  sx={{ m: 1, minWidth: 100 }}
                   disabled={options.color.value === ""}
                 >
                   <InputLabel>Storage</InputLabel>
@@ -189,7 +170,9 @@ const ProductDetails = ({ open, item, handleClose, addToCart }: Props) => {
                 </FormControl>
               )}
             </DialogContent>
-            <DialogActions>
+            <DialogActions
+              sx={{ display: "flex", justifyContent: "center", mb: 1 }}
+            >
               <Button onClick={handleClose}>Cancel</Button>
               <Button
                 onClick={() => {
